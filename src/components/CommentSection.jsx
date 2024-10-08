@@ -34,7 +34,7 @@ export default function CommentSection({ id }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
+    onSnapshot(
       query(
         collection(db, "posts", id, "comments"),
         orderBy("timestamp", "desc")
@@ -44,8 +44,7 @@ export default function CommentSection({ id }) {
       }
     );
     // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, [db, id]);
+  }, [db]);
 
   return (
     <div>
