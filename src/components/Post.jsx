@@ -1,6 +1,7 @@
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import React from "react";
 import LikeSection from "./LikeSection";
+import CommentSection from "./CommentSection";
 
 export const Post = ({ post }) => {
   return (
@@ -24,6 +25,7 @@ export const Post = ({ post }) => {
         <span className="font-bold mr-2">{post.username}</span>
         {post.caption}
       </p>
+      <CommentSection id={post.id} />
     </div>
   );
 };

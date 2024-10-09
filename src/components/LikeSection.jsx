@@ -19,6 +19,20 @@ export default function LikeSection({ id }) {
   const [likes, setLikes] = useState([]);
   const db = getFirestore(app);
 
+  useEffect(() => {
+    onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
+      setLikes(snapshot.docs);
+    });
+  }, [db]);
+
+  useEffect(() => {
+    if (likes.findIndex((like) => like.id === session?.user?.uid) !== -1) {
+      setHasLiked(true);
+    } else {
+      setHasLiked(false);
+    }
+  }, [likes]);
+
   async function likePost() {
     if (hasLiked) {
       await deleteDoc(doc(db, "posts", id, "likes", session?.user?.uid));
@@ -28,20 +42,6 @@ export default function LikeSection({ id }) {
       });
     }
   }
-
-  useEffect(() => {
-    onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
-      setLikes(snapshot.docs);
-    });
-  }, [likes]);
-
-  useEffect(() => {
-    if (likes.findIndex((like) => like.id === session?.user?.uid) !== -1) {
-      setHasLiked(true);
-    } else {
-      setHasLiked(false);
-    }
-  }, [likes]);
 
   return (
     <div>
