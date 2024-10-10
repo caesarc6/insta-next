@@ -14,6 +14,8 @@ import SessionWrapper from "@/components/SessionWrapper";
 //   weight: "100 900",
 // });
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata = {
   title: "Instagram Clone",
   description: "A clone of Instagram built with Next.js and Tailwind CSS",
