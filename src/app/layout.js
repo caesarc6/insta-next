@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import SessionWrapper from "@/components/SessionWrapper";
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <SessionWrapper>
       <html lang="en">
-        <body>
+        <body className={inter.className}>
           <Header />
           {children}
         </body>
